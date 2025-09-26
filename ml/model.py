@@ -93,18 +93,29 @@ def load_model(path):
 # def performance_on_categorical_slice(
 #     data, column_name, slice_value, categorical_features, label, encoder, lb, model
 # ):
-def performance_on_categorical_slice(model, X, y, feature, feature_value):
-    """ Computes the model metrics on a slice of the data specified by a column name and value. """
+def performance_on_categorical_slice(
+    data, column_name, slice_value, categorical_features, label, encoder, lb, model
+):
+    """
+    Computes the model metrics on a slice of the data specified by a column name and value.
+    """
+    # filter data to the slice
+    data_slice = data[data[column_name] == slice_value]
 
-    # Filter to just the slice
-    mask = X[feature] == feature_value
-    X_slice = X[mask]
-    y_slice = y[mask]
+    # process slice using the same encoder/lb (training=False so we don’t refit)
+    X_slice, y_slice, _, _ = process_data(
+        data_slice,
+        categorical_features=categorical_features,
+        label=label,
+        training=False,
+        encoder=encoder,
+        lb=lb,
+    )
 
-    # Run inference on the slice
+    # inference
     preds = inference(model, X_slice)
 
-    # Compute metrics
+    # compute metrics
     precision, recall, fbeta = compute_model_metrics(y_slice, preds)
 
     return precision, recall, fbeta
