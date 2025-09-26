@@ -28,3 +28,6 @@ Working in a command line environment is recommended for ease of use with git an
     * GET on the root giving a welcome message.
     * POST that does model inference.
 # Trigger GitHub Actions
+
+## Project Repository
+You can find the full project on GitHub: [https://github.com/JMANCILLA2013/Deploying-a-Scalable-ML-Pipeline-with-FastAPI](https://github.com/JMANCILLA2013/Deploying-a-Scalable-ML-Pipeline-with-FastAPI)
