@@ -177,7 +177,7 @@ pyrightconfig.json
 fastapi/
 
 # ML artifacts
-model/
+model/model.pkl
 
 
 # End of https://www.toptal.com/developers/gitignore/api/python
